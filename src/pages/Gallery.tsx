@@ -6,16 +6,19 @@ import steakImg from "@/assets/steak.jpg";
 import friesImg from "@/assets/fries.jpg";
 import mixedGrillImg from "@/assets/mixed-grill.jpg";
 import heroImg from "@/assets/hero-bg.jpg";
+import { useLang } from "@/context/LanguageProvider";
 
 const Gallery = () => {
   const images = [
-    { src: heroImg, alt: "Autogrill MD Restaurant Exterior", category: "Location" },
-    { src: burgerImg, alt: "Juicy Grilled Burger", category: "Burgers" },
-    { src: kebabsImg, alt: "Traditional Kebabs", category: "Grills" },
-    { src: steakImg, alt: "Premium Steak", category: "Steaks" },
-    { src: mixedGrillImg, alt: "Mixed Grill Platter", category: "Platters" },
-    { src: friesImg, alt: "Crispy French Fries", category: "Sides" },
+    { src: heroImg, altKey: "gallery.image.location.alt", categoryKey: "gallery.category.location" },
+    { src: burgerImg, altKey: "gallery.image.burger.alt", categoryKey: "menu.category.burgers.title" },
+    { src: kebabsImg, altKey: "gallery.image.kebabs.alt", categoryKey: "menu.category.kebabs.title" },
+    { src: steakImg, altKey: "gallery.image.steak.alt", categoryKey: "menu.category.steaks.title" },
+    { src: mixedGrillImg, altKey: "gallery.image.mixed_grill.alt", categoryKey: "menu.item.mixed_grill.name" },
+    { src: friesImg, altKey: "gallery.image.fries.alt", categoryKey: "menu.category.sides.title" },
   ];
+
+  const { t } = useLang();
 
   return (
     <div className="min-h-screen bg-background">
@@ -26,11 +29,9 @@ const Gallery = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Camera className="h-8 w-8 text-white" />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">Gallery</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">{t("gallery.title")}</h1>
           </div>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            A taste of what awaits you at Autogrill MD
-          </p>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">{t("gallery.subtitle")}</p>
         </div>
       </section>
 
@@ -45,15 +46,15 @@ const Gallery = () => {
               >
                 <img
                   src={image.src}
-                  alt={image.alt}
+                  alt={t(image.altKey)}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <span className="inline-block bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold mb-2">
-                      {image.category}
+                      {t(image.categoryKey)}
                     </span>
-                    <h3 className="text-white text-xl font-bold">{image.alt}</h3>
+                    <h3 className="text-white text-xl font-bold">{t(image.altKey)}</h3>
                   </div>
                 </div>
               </div>
@@ -65,13 +66,11 @@ const Gallery = () => {
       {/* Instagram Section */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-foreground">Follow Us</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Stay updated with our latest dishes and special offers on social media
-          </p>
+          <h2 className="text-3xl font-bold mb-4 text-foreground">{t("gallery.follow_us")}</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{t("gallery.stay_updated")}</p>
           <div className="flex justify-center gap-4">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/AUTOGRILLstauceni"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-fire text-white px-6 py-3 rounded-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105"
@@ -79,7 +78,7 @@ const Gallery = () => {
               Facebook
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/autogrill.md"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-fire text-white px-6 py-3 rounded-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105"

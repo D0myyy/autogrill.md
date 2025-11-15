@@ -1,8 +1,11 @@
 import Navigation from "@/components/Navigation";
 import { MapPin, Clock, Navigation2, Phone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLang } from "@/context/LanguageProvider";
 
 const Location = () => {
+  const { t } = useLang();
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -12,11 +15,9 @@ const Location = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <MapPin className="h-8 w-8 text-white" />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">Find Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">{t("index.find_us")}</h1>
           </div>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            Easy to find, easy to park, easy to enjoy
-          </p>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">{t("location.subtitle")}</p>
         </div>
       </section>
 
@@ -28,7 +29,7 @@ const Location = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <MapPin className="h-6 w-6 text-primary" />
-                  Address
+                  {t("location.address")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -43,20 +44,20 @@ const Location = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl">
                   <Clock className="h-6 w-6 text-primary" />
-                  Opening Hours
+                  {t("location.opening_hours")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Monday - Friday</span>
-                  <span className="font-semibold text-foreground">8:00 AM - 10:00 PM</span>
+                  <span className="text-muted-foreground">{t("hours.mon_fri")}</span>
+                  <span className="font-semibold text-foreground">{t("hours.weekday_time")}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Saturday - Sunday</span>
-                  <span className="font-semibold text-foreground">9:00 AM - 11:00 PM</span>
+                  <span className="text-muted-foreground">{t("hours.sat_sun")}</span>
+                  <span className="font-semibold text-foreground">{t("hours.weekend_time")}</span>
                 </div>
                 <div className="pt-4 border-t border-border">
-                  <p className="text-sm text-muted-foreground">Open every day of the year</p>
+                  <p className="text-sm text-muted-foreground">{t("open.everyday")}</p>
                 </div>
               </CardContent>
             </Card>
@@ -67,13 +68,13 @@ const Location = () => {
             <CardHeader className="bg-muted">
               <CardTitle className="flex items-center gap-2 text-2xl">
                 <Navigation2 className="h-6 w-6 text-primary" />
-                Get Directions
+                {t("index.get_directions")}
               </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               <div className="aspect-video w-full">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2719.8!2d28.8!3d47.03!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDAxJzQ4LjAiTiAyOMKwNDgnMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890"
+                  src="https://www.google.com/maps?q=47.0911377,28.8632363&z=20&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -92,19 +93,17 @@ const Location = () => {
       {/* Directions */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">How to Get Here</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">{t("directions.title")}</h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <Card className="text-center border-2 hover:border-primary transition-all duration-300 shadow-lg hover:shadow-warm">
               <CardHeader>
                 <div className="mx-auto w-16 h-16 bg-gradient-fire rounded-full flex items-center justify-center mb-4">
                   <Navigation2 className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>From Chișinău Center</CardTitle>
+                <CardTitle>{t("directions.from_center")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Take strada Păcii north towards Stăuceni. 10 minutes drive.
-                </p>
+                <p className="text-muted-foreground">{t("directions.from_center.desc")}</p>
               </CardContent>
             </Card>
 
@@ -113,12 +112,10 @@ const Location = () => {
                 <div className="mx-auto w-16 h-16 bg-gradient-fire rounded-full flex items-center justify-center mb-4">
                   <MapPin className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>Easy Parking</CardTitle>
+                <CardTitle>{t("directions.parking")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Ample parking space available right next to the restaurant.
-                </p>
+                <p className="text-muted-foreground">{t("directions.parking.desc")}</p>
               </CardContent>
             </Card>
 
@@ -127,12 +124,10 @@ const Location = () => {
                 <div className="mx-auto w-16 h-16 bg-gradient-fire rounded-full flex items-center justify-center mb-4">
                   <Phone className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>Need Help?</CardTitle>
+                <CardTitle>{t("directions.need_help")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">
-                  Call us for directions or any questions about your visit.
-                </p>
+                <p className="text-muted-foreground">{t("directions.need_help.desc")}</p>
               </CardContent>
             </Card>
           </div>

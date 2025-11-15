@@ -6,62 +6,65 @@ import kebabsImg from "@/assets/kebabs.jpg";
 import steakImg from "@/assets/steak.jpg";
 import friesImg from "@/assets/fries.jpg";
 import mixedGrillImg from "@/assets/mixed-grill.jpg";
+import { useLang } from "@/context/LanguageProvider";
 
 const Menu = () => {
+  const { t } = useLang();
+
   const menuCategories = [
     {
-      title: "Burgers",
-      description: "Freshly grilled, juicy burgers",
+      title: t("menu.category.burgers.title"),
+      description: t("menu.category.burgers.desc"),
       image: burgerImg,
       items: [
-        { name: "Classic Burger", description: "Beef patty, lettuce, tomato, onion", price: "45 MDL" },
-        { name: "Cheese Burger", description: "Beef patty with melted cheese", price: "50 MDL" },
-        { name: "Double Burger", description: "Two beef patties, double cheese", price: "70 MDL" },
-        { name: "Chicken Burger", description: "Grilled chicken breast", price: "48 MDL" },
+        { name: t("menu.item.classic_burger.name"), description: t("menu.item.classic_burger.desc"), price: "45 MDL" },
+        { name: t("menu.item.cheese_burger.name"), description: t("menu.item.cheese_burger.desc"), price: "50 MDL" },
+        { name: t("menu.item.double_burger.name"), description: t("menu.item.double_burger.desc"), price: "70 MDL" },
+        { name: t("menu.item.chicken_burger.name"), description: t("menu.item.chicken_burger.desc"), price: "48 MDL" },
       ],
     },
     {
-      title: "Kebabs & Skewers",
-      description: "Traditional grilled perfection",
+      title: t("menu.category.kebabs.title"),
+      description: t("menu.category.kebabs.desc"),
       image: kebabsImg,
       items: [
-        { name: "Pork Kebab", description: "Marinated pork skewers", price: "55 MDL" },
-        { name: "Chicken Kebab", description: "Tender chicken pieces", price: "52 MDL" },
-        { name: "Mixed Kebab", description: "Pork and chicken combo", price: "60 MDL" },
-        { name: "Lamb Kebab", description: "Premium lamb cuts", price: "75 MDL" },
+        { name: t("menu.item.pork_kebab.name"), description: t("menu.item.pork_kebab.desc"), price: "55 MDL" },
+        { name: t("menu.item.chicken_kebab.name"), description: t("menu.item.chicken_kebab.desc"), price: "52 MDL" },
+        { name: t("menu.item.mixed_kebab.name"), description: t("menu.item.mixed_kebab.desc"), price: "60 MDL" },
+        { name: t("menu.item.lamb_kebab.name"), description: t("menu.item.lamb_kebab.desc"), price: "75 MDL" },
       ],
     },
     {
-      title: "Steaks & Grills",
-      description: "Premium cuts, expertly grilled",
+      title: t("menu.category.steaks.title"),
+      description: t("menu.category.steaks.desc"),
       image: steakImg,
       items: [
-        { name: "Pork Steak", description: "200g premium cut", price: "80 MDL" },
-        { name: "Chicken Steak", description: "Grilled chicken breast", price: "70 MDL" },
-        { name: "Mixed Grill", description: "Assorted meats platter", price: "120 MDL" },
-        { name: "Ribs", description: "BBQ glazed pork ribs", price: "95 MDL" },
+        { name: t("menu.item.pork_steak.name"), description: t("menu.item.pork_steak.desc"), price: "80 MDL" },
+        { name: t("menu.item.chicken_steak.name"), description: t("menu.item.chicken_steak.desc"), price: "70 MDL" },
+        { name: t("menu.item.mixed_grill.name"), description: t("menu.item.mixed_grill.desc"), price: "120 MDL" },
+        { name: t("menu.item.ribs.name"), description: t("menu.item.ribs.desc"), price: "95 MDL" },
       ],
     },
     {
-      title: "Sides",
-      description: "Perfect companions",
+      title: t("menu.category.sides.title"),
+      description: t("menu.category.sides.desc"),
       image: friesImg,
       items: [
-        { name: "French Fries", description: "Crispy golden fries", price: "25 MDL" },
-        { name: "Grilled Vegetables", description: "Seasonal mix", price: "30 MDL" },
-        { name: "Coleslaw", description: "Fresh cabbage salad", price: "20 MDL" },
-        { name: "Garlic Bread", description: "Toasted with butter", price: "22 MDL" },
+        { name: t("menu.item.fries.name"), description: t("menu.item.fries.desc"), price: "25 MDL" },
+        { name: t("menu.item.veg.name"), description: t("menu.item.veg.desc"), price: "30 MDL" },
+        { name: t("menu.item.coleslaw.name"), description: t("menu.item.coleslaw.desc"), price: "20 MDL" },
+        { name: t("menu.item.garlic_bread.name"), description: t("menu.item.garlic_bread.desc"), price: "22 MDL" },
       ],
     },
     {
-      title: "Drinks",
-      description: "Refresh and enjoy",
+      title: t("menu.category.drinks.title"),
+      description: t("menu.category.drinks.desc"),
       image: mixedGrillImg,
       items: [
-        { name: "Soft Drinks", description: "Coca-Cola, Fanta, Sprite", price: "15 MDL" },
-        { name: "Water", description: "Still or sparkling", price: "10 MDL" },
-        { name: "Fresh Juice", description: "Orange or apple", price: "25 MDL" },
-        { name: "Coffee", description: "Espresso, Americano", price: "18 MDL" },
+        { name: t("menu.item.soft_drinks.name"), description: t("menu.item.soft_drinks.desc"), price: "15 MDL" },
+        { name: t("menu.item.water.name"), description: t("menu.item.water.desc"), price: "10 MDL" },
+        { name: t("menu.item.juice.name"), description: t("menu.item.juice.desc"), price: "25 MDL" },
+        { name: t("menu.item.coffee.name"), description: t("menu.item.coffee.desc"), price: "18 MDL" },
       ],
     },
   ];
@@ -75,12 +78,10 @@ const Menu = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Flame className="h-8 w-8 text-white animate-pulse" />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">Our Menu</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">{t("menu.title")}</h1>
             <Flame className="h-8 w-8 text-white animate-pulse" />
           </div>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            Fresh grilled food made with quality ingredients, served fast and delicious
-          </p>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">{t("menu.description")}</p>
         </div>
       </section>
 
@@ -124,13 +125,11 @@ const Menu = () => {
       {/* Call to Action */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-foreground">Ready to Order?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Visit us at str. Păcii 21, Stăuceni or call ahead for takeaway
-          </p>
-          <a href="tel:+37360000000">
+          <h2 className="text-3xl font-bold mb-4 text-foreground">{t("menu.ready_order")}</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{t("menu.visit_or_call")}</p>
+          <a href="tel:+37369310750">
             <button className="bg-gradient-fire text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105">
-              Call to Order
+              {t("menu.call_to_order")}
             </button>
           </a>
         </div>

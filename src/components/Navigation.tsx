@@ -3,18 +3,21 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/context/LanguageProvider";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "Menu", path: "/menu" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Location", path: "/location" },
-    { name: "Contact", path: "/contact" },
+    { key: "home", path: "/" },
+    { key: "menu", path: "/menu" },
+    { key: "gallery", path: "/gallery" },
+    { key: "location", path: "/location" },
+    { key: "contact", path: "/contact" },
   ];
+
+  const { lang, setLang, t } = useLang();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -34,34 +37,86 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link key={item.path} to={item.path}>
-                <Button
-                  variant={isActive(item.path) ? "default" : "ghost"}
-                  className={cn(
-                    "transition-all duration-300",
-                    isActive(item.path) && "bg-primary text-primary-foreground shadow-warm"
-                  )}
-                >
-                  {item.name}
-                </Button>
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-1">
+              {navItems.map((item) => (
+                <Link key={item.path} to={item.path}>
+                  <Button
+                    variant={isActive(item.path) ? "default" : "ghost"}
+                    className={cn(
+                      "transition-all duration-300 text-sm",
+                      isActive(item.path) && "bg-primary text-primary-foreground shadow-warm"
+                    )}
+                  >
+                    {t(`nav.${item.key}`)}
+                  </Button>
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? (
-              <X className="h-6 w-6 text-foreground" />
-            ) : (
-              <Menu className="h-6 w-6 text-foreground" />
-            )}
-          </button>
+          {/* Right side (mobile language button + menu button) */}
+          <div className="flex items-center gap-2">
+            {/* Desktop language selector (far right) */}
+            <div className="hidden md:flex items-center gap-1 ml-4">
+              <Button
+                size="sm"
+                variant={lang === "ro" ? "default" : "ghost"}
+                onClick={() => setLang("ro")}
+                title="Română"
+                aria-pressed={lang === "ro"}
+                className="h-8 w-8 px-2 text-xs"
+              >
+                RO
+              </Button>
+              <Button
+                size="sm"
+                variant={lang === "ru" ? "default" : "ghost"}
+                onClick={() => setLang("ru")}
+                title="Русский"
+                aria-pressed={lang === "ru"}
+                className="h-8 w-8 px-2 text-xs"
+              >
+                RU
+              </Button>
+              <Button
+                size="sm"
+                variant={lang === "en" ? "default" : "ghost"}
+                onClick={() => setLang("en")}
+                title="English"
+                aria-pressed={lang === "en"}
+                className="h-8 w-8 px-2 text-xs"
+              >
+                EN
+              </Button>
+            </div>
+
+            {/* Mobile language button: small, cycles on click */}
+            <button
+              className="md:hidden p-1 rounded-md hover:bg-muted transition-colors text-sm w-9 h-9 flex items-center justify-center"
+              onClick={() => {
+                const next = lang === "ro" ? "ru" : lang === "ru" ? "en" : "ro";
+                setLang(next as "ro" | "ru" | "en");
+              }}
+              aria-label={`Change language, current ${lang}`}
+              title="Change language"
+            >
+              {lang.toUpperCase()}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? (
+                <X className="h-6 w-6 text-foreground" />
+              ) : (
+                <Menu className="h-6 w-6 text-foreground" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -81,11 +136,23 @@ const Navigation = () => {
                       isActive(item.path) && "bg-primary text-primary-foreground shadow-warm"
                     )}
                   >
-                    {item.name}
+                    {t(`nav.${item.key}`)}
                   </Button>
                 </Link>
               ))}
             </div>
+              {/* Mobile language options inside menu */}
+              <div className="pt-2 border-t border-border flex items-center gap-2">
+                <Button size="sm" variant={lang === "ro" ? "default" : "ghost"} onClick={() => setLang("ro")} className="w-full">
+                  RO — Română
+                </Button>
+                <Button size="sm" variant={lang === "ru" ? "default" : "ghost"} onClick={() => setLang("ru")} className="w-full">
+                  RU — Русский
+                </Button>
+                <Button size="sm" variant={lang === "en" ? "default" : "ghost"} onClick={() => setLang("en")} className="w-full">
+                  EN — English
+                </Button>
+              </div>
           </div>
         )}
       </div>

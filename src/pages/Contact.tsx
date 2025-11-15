@@ -1,8 +1,11 @@
 import Navigation from "@/components/Navigation";
 import { Phone, Mail, MessageCircle, Facebook, Instagram, Clock } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLang } from "@/context/LanguageProvider";
 
 const Contact = () => {
+  const { t } = useLang();
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -12,11 +15,9 @@ const Contact = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <MessageCircle className="h-8 w-8 text-white" />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">Get in Touch</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">{t("contact.title")}</h1>
           </div>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
-            We're here to serve you. Reach out anytime!
-          </p>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">{t("contact.subtitle")}</p>
         </div>
       </section>
 
@@ -29,19 +30,17 @@ const Contact = () => {
                 <div className="w-16 h-16 bg-gradient-fire rounded-full flex items-center justify-center mb-4">
                   <Phone className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>Phone</CardTitle>
-                <CardDescription>Call us for orders or inquiries</CardDescription>
+                <CardTitle>{t("contact.phone")}</CardTitle>
+                <CardDescription>{t("contact.phone_desc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <a
-                  href="tel:+37360000000"
+                  href="tel:+37369310750"
                   className="text-lg font-semibold text-primary hover:text-accent transition-colors"
                 >
-                  +373 60 000 000
+                  069 310 750
                 </a>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Available during opening hours
-                </p>
+                <p className="text-sm text-muted-foreground mt-2">{t("contact.phone_desc")}</p>
               </CardContent>
             </Card>
 
@@ -50,8 +49,8 @@ const Contact = () => {
                 <div className="w-16 h-16 bg-gradient-fire rounded-full flex items-center justify-center mb-4">
                   <Mail className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>Email</CardTitle>
-                <CardDescription>Send us a message anytime</CardDescription>
+                <CardTitle>{t("contact.email")}</CardTitle>
+                <CardDescription>{t("contact.email_desc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <a
@@ -60,9 +59,7 @@ const Contact = () => {
                 >
                   info@autogrill.md
                 </a>
-                <p className="text-sm text-muted-foreground mt-2">
-                  We'll respond within 24 hours
-                </p>
+                <p className="text-sm text-muted-foreground mt-2">{t("contact.email_desc")}</p>
               </CardContent>
             </Card>
 
@@ -71,18 +68,18 @@ const Contact = () => {
                 <div className="w-16 h-16 bg-gradient-fire rounded-full flex items-center justify-center mb-4">
                   <Clock className="h-8 w-8 text-white" />
                 </div>
-                <CardTitle>Hours</CardTitle>
-                <CardDescription>When we're open</CardDescription>
+                <CardTitle>{t("contact.hours")}</CardTitle>
+                <CardDescription>{t("contact.hours_desc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Mon-Fri:</span>
-                    <span className="font-semibold">8:00 AM - 10:00 PM</span>
+                    <span className="text-muted-foreground">{t("hours.mon_fri")}</span>
+                    <span className="font-semibold">{t("hours.weekday_time")}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Sat-Sun:</span>
-                    <span className="font-semibold">9:00 AM - 11:00 PM</span>
+                    <span className="text-muted-foreground">{t("hours.sat_sun")}</span>
+                    <span className="font-semibold">{t("hours.weekend_time")}</span>
                   </div>
                 </div>
               </CardContent>
@@ -92,15 +89,13 @@ const Contact = () => {
           {/* Social Media */}
           <Card className="border-2 shadow-xl">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl mb-2">Follow Us on Social Media</CardTitle>
-              <CardDescription className="text-base">
-                Stay updated with our latest dishes, special offers, and events
-              </CardDescription>
+              <CardTitle className="text-3xl mb-2">{t("contact.follow_us")}</CardTitle>
+              <CardDescription className="text-base">{t("contact.stay_updated")}</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex justify-center gap-4 flex-wrap">
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/AUTOGRILLstauceni"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group"
@@ -108,13 +103,11 @@ const Contact = () => {
                   <div className="w-20 h-20 bg-gradient-fire rounded-full flex items-center justify-center shadow-warm hover:shadow-glow transition-all duration-300 group-hover:scale-110">
                     <Facebook className="h-10 w-10 text-white" />
                   </div>
-                  <p className="text-center mt-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                    Facebook
-                  </p>
+                  <p className="text-center mt-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">Facebook</p>
                 </a>
 
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/autogrill.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group"
@@ -122,9 +115,7 @@ const Contact = () => {
                   <div className="w-20 h-20 bg-gradient-fire rounded-full flex items-center justify-center shadow-warm hover:shadow-glow transition-all duration-300 group-hover:scale-110">
                     <Instagram className="h-10 w-10 text-white" />
                   </div>
-                  <p className="text-center mt-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                    Instagram
-                  </p>
+                  <p className="text-center mt-2 text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">Instagram</p>
                 </a>
               </div>
             </CardContent>
@@ -135,20 +126,18 @@ const Contact = () => {
       {/* Quick Contact CTA */}
       <section className="py-16 bg-muted">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-foreground">Ready to Visit?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Stop by for a delicious meal or call ahead for takeaway orders
-          </p>
+          <h2 className="text-3xl font-bold mb-4 text-foreground">{t("contact.ready_visit")}</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{t("contact.stop_by")}</p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <a href="tel:+37360000000">
+            <a href="tel:+37369310750">
               <button className="bg-gradient-fire text-white px-8 py-4 rounded-lg text-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105 flex items-center gap-2">
                 <Phone className="h-5 w-5" />
-                Call Now
+                {t("contact.call_now")}
               </button>
             </a>
             <a href="/location">
               <button className="bg-secondary text-secondary-foreground px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-warm transition-all duration-300 hover:scale-105">
-                View Location
+                {t("contact.view_location")}
               </button>
             </a>
           </div>

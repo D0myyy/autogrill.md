@@ -7,46 +7,49 @@ import heroImg from "@/assets/hero-bg.jpg";
 import burgerImg from "@/assets/burger.jpg";
 import kebabsImg from "@/assets/kebabs.jpg";
 import steakImg from "@/assets/steak.jpg";
+import { useLang } from "@/context/LanguageProvider";
 
 const Index = () => {
+  const { t } = useLang();
+
   const features = [
     {
       icon: Flame,
-      title: "Fresh Grilled",
-      description: "Everything cooked fresh on our grill, just the way you like it",
+      title: t("index.features.fresh.title"),
+      description: t("index.features.fresh.desc"),
     },
     {
       icon: Clock,
-      title: "Fast Service",
-      description: "Quick meals for travelers and locals on the go",
+      title: t("index.features.fast.title"),
+      description: t("index.features.fast.desc"),
     },
     {
       icon: MapPin,
-      title: "Easy Access",
-      description: "Conveniently located on str. Păcii 21, with ample parking",
+      title: t("index.features.access.title"),
+      description: t("index.features.access.desc"),
     },
     {
       icon: Utensils,
-      title: "Quality Food",
-      description: "Premium ingredients, authentic flavors, affordable prices",
+      title: t("index.features.quality.title"),
+      description: t("index.features.quality.desc"),
     },
   ];
 
   const highlights = [
     {
       image: burgerImg,
-      title: "Juicy Burgers",
-      description: "Freshly grilled beef patties with all your favorite toppings",
+      title: t("highlight.burgers.title"),
+      description: t("highlight.burgers.desc"),
     },
     {
       image: kebabsImg,
-      title: "Traditional Kebabs",
-      description: "Marinated meat skewers, grilled to perfection",
+      title: t("highlight.kebabs.title"),
+      description: t("highlight.kebabs.desc"),
     },
     {
       image: steakImg,
-      title: "Premium Steaks",
-      description: "High-quality cuts, expertly grilled with signature seasoning",
+      title: t("highlight.steak.title"),
+      description: t("highlight.steak.desc"),
     },
   ];
 
@@ -68,24 +71,18 @@ const Index = () => {
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Flame className="h-12 w-12 text-primary animate-pulse" />
-            <h1 className="text-5xl md:text-7xl font-bold text-white">
-              Autogrill MD
-            </h1>
+            <h1 className="text-5xl md:text-7xl font-bold text-white">{t("index.site_name")}</h1>
             <Flame className="h-12 w-12 text-primary animate-pulse" />
           </div>
-          <p className="text-xl md:text-3xl text-white mb-4 font-semibold">
-            Fresh Grilled Food on the Road
-          </p>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Your roadside destination for delicious grilled meals in Stăuceni
-          </p>
+          <p className="text-xl md:text-3xl text-white mb-4 font-semibold">{t("index.hero_tagline")}</p>
+          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">{t("index.hero_sub")}</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/menu">
-              <Button
+                <Button
                 size="lg"
                 className="bg-gradient-fire text-white px-8 py-6 text-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105"
               >
-                View Menu
+                {t("index.view_menu")}
               </Button>
             </Link>
             <Link to="/location">
@@ -94,7 +91,7 @@ const Index = () => {
                 variant="secondary"
                 className="px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-warm transition-all duration-300 hover:scale-105"
               >
-                Find Us
+                {t("index.find_us")}
               </Button>
             </Link>
           </div>
@@ -104,9 +101,7 @@ const Index = () => {
       {/* Features Section */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">
-            Why Choose Autogrill MD?
-          </h2>
+          <h2 className="text-4xl font-bold text-center mb-12 text-foreground">{t("index.why_title")}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, idx) => (
               <Card
@@ -133,12 +128,8 @@ const Index = () => {
       {/* Menu Highlights */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-4 text-foreground">
-            Our Specialties
-          </h2>
-          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">
-            Discover our most popular dishes, grilled fresh daily
-          </p>
+          <h2 className="text-4xl font-bold text-center mb-4 text-foreground">{t("index.specialties")}</h2>
+          <p className="text-center text-muted-foreground text-lg mb-12 max-w-2xl mx-auto">{t("index.discover")}</p>
           <div className="grid md:grid-cols-3 gap-8">
             {highlights.map((item, idx) => (
               <Card
@@ -163,11 +154,11 @@ const Index = () => {
           </div>
           <div className="text-center mt-12">
             <Link to="/menu">
-              <Button
+                <Button
                 size="lg"
                 className="bg-gradient-fire text-white px-8 py-6 text-lg font-semibold shadow-warm hover:shadow-glow transition-all duration-300 hover:scale-105"
               >
-                See Full Menu
+                {t("index.see_full_menu")}
               </Button>
             </Link>
           </div>
@@ -177,30 +168,26 @@ const Index = () => {
       {/* Location CTA */}
       <section className="py-20 bg-gradient-fire">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 text-white">
-            Visit Us Today
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Located at str. Păcii 21, Stăuceni, Chișinău
-          </p>
+          <h2 className="text-4xl font-bold mb-6 text-white">{t("index.visit_today")}</h2>
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">{t("index.located_at")}</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link to="/location">
-              <Button
+                <Button
                 size="lg"
                 variant="secondary"
                 className="px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-warm transition-all duration-300 hover:scale-105"
               >
                 <MapPin className="mr-2 h-5 w-5" />
-                Get Directions
+                {t("index.get_directions")}
               </Button>
             </Link>
-            <a href="tel:+37360000000">
+            <a href="tel:+37369310750">
               <Button
                 size="lg"
                 variant="secondary"
                 className="px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-warm transition-all duration-300 hover:scale-105"
               >
-                Call Now
+                {t("index.call_now")}
               </Button>
             </a>
           </div>
@@ -212,14 +199,10 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Flame className="h-6 w-6 text-primary" />
-            <h3 className="text-2xl font-bold">Autogrill MD</h3>
+            <h3 className="text-2xl font-bold">{t("index.site_name")}</h3>
           </div>
-          <p className="text-sm mb-4">
-            Fresh grilled food • Stăuceni, Chișinău
-          </p>
-          <p className="text-sm text-muted-foreground">
-            © 2024 Autogrill MD. All rights reserved.
-          </p>
+          <p className="text-sm mb-4">{t("footer.tagline")}</p>
+          <p className="text-sm text-muted-foreground">{t("footer.copyright")}</p>
         </div>
       </footer>
     </div>
