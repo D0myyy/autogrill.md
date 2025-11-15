@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Flame } from "lucide-react";
+import { Menu, X, Flame, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/context/LanguageProvider";
+import { useTheme } from "@/context/ThemeProvider";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
 
   const navItems = [
     { key: "home", path: "/" },
@@ -25,7 +27,7 @@ const Navigation = () => {
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo - Left */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="bg-gradient-fire p-2 rounded-lg shadow-warm transition-all duration-300 group-hover:scale-110">
               <Flame className="h-6 w-6 text-white" />
@@ -36,8 +38,8 @@ const Navigation = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* Desktop Navigation - Center */}
+          <div className="hidden md:flex items-center gap-2 absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center gap-1">
               {navItems.map((item) => (
                 <Link key={item.path} to={item.path}>
@@ -55,10 +57,10 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Right side (mobile language button + menu button) */}
+          {/* Right side (theme toggle, language buttons, mobile menu) */}
           <div className="flex items-center gap-2">
-            {/* Desktop language selector (far right) */}
-            <div className="hidden md:flex items-center gap-1 ml-4">
+            {/* Desktop language selector */}
+            <div className="hidden md:flex items-center gap-1">
               <Button
                 size="sm"
                 variant={lang === "ro" ? "default" : "ghost"}
@@ -90,6 +92,20 @@ const Navigation = () => {
                 EN
               </Button>
             </div>
+
+            {/* Theme Toggle Button - Far Right on Desktop */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="hidden md:block p-2 rounded-lg hover:bg-muted transition-colors"
+              aria-label="Toggle theme"
+              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5 text-foreground" />
+              ) : (
+                <Moon className="h-5 w-5 text-foreground" />
+              )}
+            </button>
 
             {/* Mobile language button: small, cycles on click */}
             <button
@@ -151,6 +167,26 @@ const Navigation = () => {
                 </Button>
                 <Button size="sm" variant={lang === "en" ? "default" : "ghost"} onClick={() => setLang("en")} className="w-full">
                   EN — English
+                </Button>
+              </div>
+              {/* Mobile theme toggle */}
+              <div className="pt-2 border-t border-border">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  {theme === "dark" ? (
+                    <>
+                      <Sun className="h-4 w-4 mr-2" />
+                      Light Mode
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="h-4 w-4 mr-2" />
+                      Dark Mode
+                    </>
+                  )}
                 </Button>
               </div>
           </div>
